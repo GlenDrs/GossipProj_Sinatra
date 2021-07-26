@@ -22,21 +22,16 @@ post '/gossips/new/' do
     erb :index, locals: {gossips: Gossip.all}
   end
 
+  #Creer des pages dynamiques en utilisant id
   get '/hello/:id' do
     "Hello #{params['id']}!"
     end
 
-  get '/hello/:id/edit' do
-    erb :edit, locals: {gossips: Gossip.find(params['id'])}
-  end
-
-  post '/hello/:id/edit' do
-    erb :edit, locals: {gossips: Gossip.update(params['id'])}
-    redirect '/'
-  end
+ # affichage dynamique du gossip par id
+post '/hello/:id/edit' do
+  puts Gossip.all(params[:id])
+end
   
-
-
 end
 
 
